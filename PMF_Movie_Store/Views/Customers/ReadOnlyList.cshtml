@@ -1,0 +1,40 @@
+﻿@model IEnumerable<PMF_Movie_Store.Models.Customer>
+
+@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customers</h2>
+
+<table id="customers" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Customer</th>
+            <th>Membership Type</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var table = $("#customers").DataTable({
+                ajax: {
+                    url: "/api/customers",
+                    dataSrc: "" //jer nam je api niz objekata
+                },
+                columns: [
+                    {
+                        data: "name",
+                    },
+                    {
+                        data: "membershipType.name"
+                    }
+                ]
+            });
+        });
+    </script>
+}
